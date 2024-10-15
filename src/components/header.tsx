@@ -2,8 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
-import { IoMenuOutline } from 'react-icons/io5';
-import HeaderMenu from './header-components/HeaderMenu';
+import HamburgerMainMenu from './header-components/HamburgerMainMenu';
 
 const Header: React.FC = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -31,12 +30,7 @@ const Header: React.FC = () => {
             <button className="bg-teal-500 hover:bg-teal-600 text-white px-2 py-1 rounded-md text-xs transition-colors duration-300">
               Book Now
             </button>
-            <HeaderMenu />
-            <button 
-              className="md:hidden text-gray-900 hover:text-teal-500 transition-colors duration-300"
-            >
-              <IoMenuOutline className="w-6 h-6" />
-            </button>
+            <HamburgerMainMenu />
           </div>
         </div>
       </div>

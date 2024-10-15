@@ -1,7 +1,7 @@
 import React, { useState, useRef } from 'react';
 import MenuCategory from './MenuCategory';
 import MenuItem from './MenuItem';
-import { menuItems } from '../../types/menu-items';
+import { menuItems } from '../../types/hamburger-menu-items';
 import { MenuCategory as MenuCategoryType } from './navigation-types';
 import useClickOutside from '../../lib/useClickOutside';
 
