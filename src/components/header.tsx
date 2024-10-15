@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
+import { IoMenuOutline } from 'react-icons/io5';
 import HeaderMenu from './header-components/HeaderMenu';
 
 const Header: React.FC = () => {
@@ -18,40 +19,31 @@ const Header: React.FC = () => {
 
   return (
     <header className={`fixed w-full z-50 transition-all duration-300 ${isScrolled ? 'bg-white shadow-md' : 'bg-transparent'}`}>
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16 sm:h-20">
+      <div className="container mx-auto px-4">
+        <div className="flex items-center justify-between h-12 sm:h-14">
           <div className="flex items-center">
             <Link href="/" className="flex items-center">
-              <span className="text-2xl font-bold text-teal-500">
-                Aegon
-              </span>
-              <span className="ml-2 text-xl font-semibold text-gray-900">
-                Car Rentals
-              </span>
+              <span className="text-lg font-bold text-teal-500">Aegon</span>
+              <span className="ml-2 text-base font-semibold text-gray-900">Car Rentals</span>
             </Link>
           </div>
-          <nav className="hidden md:flex space-x-8">
-            <NavLink href="/">Home</NavLink>
-            <NavLink href="/cars">Cars</NavLink>
-            <NavLink href="/about">About</NavLink>
-            <NavLink href="/contact">Contact</NavLink>
-          </nav>
           <div className="flex items-center space-x-4">
-            <button className="bg-teal-500 hover:bg-teal-600 text-white px-4 py-2 rounded-md transition-colors duration-300">
+            <button className="bg-teal-500 hover:bg-teal-600 text-white px-2 py-1 rounded-md text-xs transition-colors duration-300">
               Book Now
             </button>
             <HeaderMenu />
+            <button 
+              className="md:hidden text-gray-900 hover:text-teal-500 transition-colors duration-300"
+            >
+              <IoMenuOutline className="w-6 h-6" />
+            </button>
           </div>
         </div>
       </div>
+      {/* Theme color line */}
+      <div className="h-1 bg-gradient-to-r from-teal-400 via-teal-500 to-teal-600"></div>
     </header>
   );
 };
-
-const NavLink: React.FC<{ href: string; children: React.ReactNode }> = ({ href, children }) => (
-  <Link href={href} className="text-gray-900 hover:text-teal-500 font-medium transition-colors duration-300">
-    {children}
-  </Link>
-);
 
 export default Header;
