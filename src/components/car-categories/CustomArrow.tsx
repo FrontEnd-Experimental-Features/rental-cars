@@ -1,4 +1,5 @@
 import React from 'react';
+import { IoChevronBackOutline, IoChevronForwardOutline } from 'react-icons/io5';
 
 interface CustomArrowProps {
   className?: string;
@@ -13,9 +14,11 @@ const CustomArrow: React.FC<CustomArrowProps> = ({ className, style, onClick, di
     style={{ ...style, display: 'block' }}
     onClick={onClick}
   >
-    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6 text-teal-500">
-      <path strokeLinecap="round" strokeLinejoin="round" d={direction === 'prev' ? "M15 19l-7-7 7-7" : "M9 5l7 7-7 7"} />
-    </svg>
+    {direction === 'prev' ? (
+      <IoChevronBackOutline className="w-6 h-6 text-teal-500" />
+    ) : (
+      <IoChevronForwardOutline className="w-6 h-6 text-teal-500" />
+    )}
   </div>
 );
 
