@@ -1,12 +1,4 @@
-export interface MenuItem {
-  href: string;
-  label: string;
-}
-
-export interface MenuCategory {
-  title: string;
-  items: MenuItem[];
-}
+import { MenuCategory } from '../components/header-components/navigation-types';
 
 export const menuItems: MenuCategory[] = [
   {

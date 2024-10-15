@@ -1,6 +1,6 @@
 import React from 'react';
 import Link from 'next/link';
-import { MenuItemProps } from './header-types';
+import { MenuItemProps } from './navigation-types';
 
 const MenuItem: React.FC<MenuItemProps> = ({ href, children }) => (
   <li>

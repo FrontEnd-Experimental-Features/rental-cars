@@ -1,28 +1,36 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import MenuCategory from './MenuCategory';
 import MenuItem from './MenuItem';
 import { menuItems } from '../../types/menu-items';
+import { MenuCategory as MenuCategoryType } from './navigation-types';
+import useClickOutside from '../../lib/useClickOutside';
 
 const HeaderMenu: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const menuRef = useRef<HTMLDivElement>(null);
+  const buttonRef = useRef<HTMLButtonElement>(null);
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
   };
 
+  useClickOutside(menuRef, () => setIsMenuOpen(false), buttonRef);
+
   return (
     <div className="relative">
       <button 
+        ref={buttonRef}
         onClick={toggleMenu}
-        className="text-gray-900 hover:text-teal-500 transition-colors duration-300"
+        className="text-gray-900 hover:text-teal-500 transition-colors duration-300 focus:outline-none"
+        aria-label="Toggle menu"
       >
-        <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
-        </svg>
+        <div className="w-6 h-6 flex items-center justify-center">
+          <span className={`hamburger-icon ${isMenuOpen ? 'open' : ''}`}></span>
+        </div>
       </button>
       {isMenuOpen && (
-        <div className="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1 z-10">
-          {menuItems.map((category, index) => (
+        <div ref={menuRef} className="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1 z-10">
+          {menuItems.map((category: MenuCategoryType, index: number) => (
             <MenuCategory key={index} title={category.title}>
               {category.items.map((item, itemIndex) => (
                 <MenuItem key={itemIndex} href={item.href}>

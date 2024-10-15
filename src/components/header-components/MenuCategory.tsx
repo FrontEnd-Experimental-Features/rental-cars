@@ -1,5 +1,5 @@
 import React from 'react';
-import { MenuCategoryProps } from './header-types';
+import { MenuCategoryProps } from './navigation-types';
 
 const MenuCategory: React.FC<MenuCategoryProps> = ({ title, children }) => (
   <div className="px-4 py-2">

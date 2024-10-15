@@ -52,3 +52,43 @@ body {
 .slick-dots li.slick-active button:before {
   color: #0d9488 !important; /* Tailwind teal-600 */
 }
+
+/* Add these styles to your existing globals.css file */
+
+.hamburger-icon {
+  position: relative;
+  width: 24px;
+  height: 2px;
+  background-color: currentColor;
+  transition: background-color 0.3s ease;
+}
+
+.hamburger-icon::before,
+.hamburger-icon::after {
+  content: '';
+  position: absolute;
+  width: 24px;
+  height: 2px;
+  background-color: currentColor;
+  transition: transform 0.3s ease;
+}
+
+.hamburger-icon::before {
+  top: -8px;
+}
+
+.hamburger-icon::after {
+  bottom: -8px;
+}
+
+.hamburger-icon.open {
+  background-color: transparent;
+}
+
+.hamburger-icon.open::before {
+  transform: translateY(8px) rotate(45deg);
+}
+
+.hamburger-icon.open::after {
+  transform: translateY(-8px) rotate(-45deg);
+}
