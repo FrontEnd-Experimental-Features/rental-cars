@@ -3,7 +3,7 @@ export interface CarCategory {
   name: string;
   description: string;
   imageUrl: string;
-  type: 'premium' | 'budget';
+  type: string; // This can be 'premium', 'budget', or any other category type
 }
 
 export const carCategories: CarCategory[] = [
