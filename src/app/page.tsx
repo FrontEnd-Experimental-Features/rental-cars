@@ -1,4 +1,5 @@
 import Header from '../components/header';
+import Footer from '../components/footer';
 
 export default function Home() {
   return (
@@ -24,11 +25,7 @@ export default function Home() {
           ))}
         </div>
       </main>
-      <footer className="bg-gray-800 text-white py-6 mt-12">
-        <div className="container mx-auto px-4 text-center">
-          <p>&copy; 2023 Aegon Car Rentals. All rights reserved.</p>
-        </div>
-      </footer>
+      <Footer />
     </div>
   );
 }
