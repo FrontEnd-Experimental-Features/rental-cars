@@ -17,15 +17,15 @@ const Header: React.FC = () => {
   }, []);
 
   return (
-    <header className={`fixed w-full z-50 transition-all duration-300 ${isScrolled ? 'bg-white/80 dark:bg-slate-900/80 backdrop-blur-md shadow-md' : 'bg-transparent'}`}>
+    <header className={`fixed w-full z-50 transition-all duration-300 ${isScrolled ? 'bg-white dark:bg-slate-800 shadow-md' : 'bg-white/70 dark:bg-slate-800/70 backdrop-blur-md'}`}>
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16 sm:h-20">
           <div className="flex items-center">
             <Link href="/" className="flex items-center">
-              <span className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-500 to-purple-500">
+              <span className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-purple-600 dark:from-blue-400 dark:to-purple-400">
                 Aegon
               </span>
-              <span className="ml-2 text-xl font-semibold text-gray-800 dark:text-white">
+              <span className="ml-2 text-xl font-semibold text-gray-800 dark:text-gray-200">
                 Car Rentals
               </span>
             </Link>
@@ -38,7 +38,7 @@ const Header: React.FC = () => {
           </nav>
           <div className="flex items-center">
             <DarkModeToggle />
-            <button className="ml-4 bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-full transition-colors duration-300">
+            <button className="ml-4 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white px-4 py-2 rounded-full transition-colors duration-300">
               Book Now
             </button>
           </div>
@@ -49,7 +49,7 @@ const Header: React.FC = () => {
 };
 
 const NavLink: React.FC<{ href: string; children: React.ReactNode }> = ({ href, children }) => (
-  <Link href={href} className="text-gray-600 hover:text-blue-500 dark:text-gray-300 dark:hover:text-blue-400 transition-colors duration-300">
+  <Link href={href} className="text-gray-800 hover:text-blue-600 dark:text-gray-200 dark:hover:text-blue-400 font-medium transition-colors duration-300">
     {children}
   </Link>
 );
