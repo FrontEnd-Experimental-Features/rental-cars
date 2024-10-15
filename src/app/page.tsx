@@ -1,6 +1,6 @@
 import Header from '../components/header';
 import Footer from '../components/footer';
-import CarCategoriesGrid from '../components/car-categories/car-categories-grid';
+import CarCategoriesGrid from '../components/car-categories/CarCategoriesGrid';
 
 export default function Home() {
   return (
