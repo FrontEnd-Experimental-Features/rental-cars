@@ -42,7 +42,7 @@ const CategorySection: React.FC<CategorySectionProps> = ({ title, categories }) 
       <div className="px-4 relative">
         <Slider {...settings}>
           {categories.map((category) => (
-            <div key={category.id} className="px-2">
+            <div key={category.id} className="px-2 h-full">
               <CarCategoryCard category={category} />
             </div>
           ))}

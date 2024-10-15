@@ -5,11 +5,17 @@ module.exports = {
     './src/components/**/*.{js,ts,jsx,tsx,mdx}',
     './src/app/**/*.{js,ts,jsx,tsx,mdx}',
   ],
-  darkMode: 'class',
   theme: {
     extend: {
-      // You can add custom theme extensions here if needed
+      // Your theme extensions here
     },
   },
-  plugins: [],
+  plugins: [
+    // Use a dynamic import for the line-clamp plugin
+    async () => {
+      const { default: lineClamp } = await import('@tailwindcss/line-clamp');
+      return lineClamp;
+    },
+  ],
 }
+
