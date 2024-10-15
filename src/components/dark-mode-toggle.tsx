@@ -1,35 +1,29 @@
 'use client'
 
-import { FC, useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 
-const DarkModeToggle: FC = () => {
+const DarkModeToggle: React.FC = () => {
   const [isDarkMode, setIsDarkMode] = useState(false);
-  const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
-    setMounted(true);
-    const savedTheme = localStorage.getItem('theme');
-    setIsDarkMode(savedTheme === 'dark');
-    document.documentElement.classList.toggle('dark', savedTheme === 'dark');
+    const isDark = localStorage.getItem('darkMode') === 'true';
+    setIsDarkMode(isDark);
+    document.documentElement.classList.toggle('dark', isDark);
   }, []);
 
-  const toggleTheme = () => {
-    const newTheme = isDarkMode ? 'light' : 'dark';
-    setIsDarkMode(!isDarkMode);
-    localStorage.setItem('theme', newTheme);
-    document.documentElement.classList.toggle('dark', !isDarkMode);
+  const toggleDarkMode = () => {
+    const newMode = !isDarkMode;
+    setIsDarkMode(newMode);
+    localStorage.setItem('darkMode', newMode.toString());
+    document.documentElement.classList.toggle('dark', newMode);
   };
-
-  if (!mounted) {
-    return null;
-  }
 
   return (
     <button
-      onClick={toggleTheme}
-      className="px-4 py-2 rounded-md bg-blue-500 dark:bg-slate-700 text-white transition-colors duration-200 hover:bg-blue-400 dark:hover:bg-slate-600"
+      onClick={toggleDarkMode}
+      className="p-2 rounded-full bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-200"
     >
-      {isDarkMode ? '☀️ Light' : '🌙 Dark'}
+      {isDarkMode ? '🌙' : '☀️'}
     </button>
   );
 };
