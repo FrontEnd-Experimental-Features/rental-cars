@@ -1,24 +1,55 @@
 'use client'
 
 import React from 'react';
+import Image from 'next/image';
 import CarCategoriesGrid from '../components/car-categories/CarCategoriesGrid';
 import SearchForm from '../components/search/SearchForm';
 import { useSticky } from '../lib/useSticky';
 
 const Home: React.FC = () => {
-  const isSticky = useSticky(100); // You can adjust the threshold as needed
+  const isSticky = useSticky(100);
 
   return (
-    <div className="min-h-screen flex flex-col bg-gradient-to-br from-white to-blue-100 dark:from-slate-900 dark:to-slate-800 transition-all duration-300">
-      <main className="flex-grow container mx-auto px-4 py-12">
-        <section className="text-center mb-16">
-          <h2 className="text-5xl font-bold text-blue-800 dark:text-blue-300 mb-4">Welcome to Aegon Car Rentals</h2>
-          <p className="text-xl text-gray-600 dark:text-gray-300 mb-8">Experience luxury and comfort on your next journey</p>
-        </section>
-        <SearchForm isSticky={isSticky} />
-        <div className="mt-16">
-          <CarCategoriesGrid />
+    <div className="min-h-screen flex flex-col">
+      <div className="relative h-screen">
+        <Image
+          src="/images/homepage/head(3000x800).jpg"
+          alt="Car rental hero image"
+          fill
+          priority
+          className="object-cover hidden lg:block"
+          sizes="100vw"
+          quality={100}
+        />
+        <Image
+          src="/images/homepage/head(2400x800).jpg"
+          alt="Car rental hero image"
+          fill
+          priority
+          className="object-cover hidden md:block lg:hidden"
+          sizes="100vw"
+          quality={100}
+        />
+        <Image
+          src="/images/homepage/head(1984x800).jpg"
+          alt="Car rental hero image"
+          fill
+          priority
+          className="object-cover block md:hidden"
+          sizes="100vw"
+          quality={100}
+        />
+        <div className="absolute inset-0 bg-black bg-opacity-50"></div>
+        <div className="absolute inset-0 flex flex-col justify-center items-center text-white">
+          <h1 className="text-4xl md:text-5xl font-bold mb-4 text-center px-4">Welcome to Aegon Car Rentals</h1>
+          <p className="text-xl md:text-2xl mb-8 text-center px-4">Experience luxury and comfort on your next journey</p>
+          <div className="w-full max-w-4xl px-4">
+            <SearchForm isSticky={isSticky} />
+          </div>
         </div>
+      </div>
+      <main className="container mx-auto px-4 py-12">
+        <CarCategoriesGrid />
       </main>
     </div>
   );
