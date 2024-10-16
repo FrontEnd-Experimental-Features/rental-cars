@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { MenuCategoryProps } from './navigation-types';
-import { ChevronDownIcon, ChevronRightIcon } from '@heroicons/react/24/solid';
+import { ChevronDownIcon } from '@heroicons/react/24/solid';
 import { motion, AnimatePresence } from 'framer-motion';
 
 const MenuCategory: React.FC<MenuCategoryProps> = ({ title, children }) => {
