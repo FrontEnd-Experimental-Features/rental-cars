@@ -34,7 +34,6 @@ const Header: React.FC = () => {
           </div>
         </div>
       </div>
-      {/* Theme color line */}
       <div className="h-1 bg-gradient-to-r from-teal-400 via-teal-500 to-teal-600"></div>
     </header>
   );

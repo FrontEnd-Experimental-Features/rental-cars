@@ -2,11 +2,7 @@ import React from 'react';
 import Image from 'next/image';
 import SearchForm from './search/SearchForm';
 
-interface HeroSectionProps {
-  isSticky: boolean;
-}
-
-const HeroSection: React.FC<HeroSectionProps> = ({ isSticky }) => {
+const HeroSection: React.FC = () => {
   return (
     <div className="relative h-screen">
       <Image
@@ -41,7 +37,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({ isSticky }) => {
         <h1 className="text-4xl md:text-5xl font-bold mb-4 text-center px-4">Welcome to Aegon Car Rentals</h1>
         <p className="text-xl md:text-2xl mb-8 text-center px-4">Experience luxury and comfort on your next journey</p>
         <div className="w-full max-w-4xl px-4">
-          <SearchForm isSticky={isSticky} />
+          <SearchForm />
         </div>
       </div>
     </div>
