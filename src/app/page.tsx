@@ -1,9 +1,8 @@
 'use client'
 
 import React from 'react';
-import Image from 'next/image';
 import CarCategoriesGrid from '../components/car-categories/CarCategoriesGrid';
-import SearchForm from '../components/search/SearchForm';
+import HeroSection from '../components/HeroSection';
 import { useSticky } from '../lib/useSticky';
 
 const Home: React.FC = () => {
@@ -11,43 +10,7 @@ const Home: React.FC = () => {
 
   return (
     <div className="min-h-screen flex flex-col">
-      <div className="relative h-screen">
-        <Image
-          src="/images/homepage/head(3000x800).jpg"
-          alt="Car rental hero image"
-          fill
-          priority
-          className="object-cover hidden lg:block"
-          sizes="100vw"
-          quality={100}
-        />
-        <Image
-          src="/images/homepage/head(2400x800).jpg"
-          alt="Car rental hero image"
-          fill
-          priority
-          className="object-cover hidden md:block lg:hidden"
-          sizes="100vw"
-          quality={100}
-        />
-        <Image
-          src="/images/homepage/head(1984x800).jpg"
-          alt="Car rental hero image"
-          fill
-          priority
-          className="object-cover block md:hidden"
-          sizes="100vw"
-          quality={100}
-        />
-        <div className="absolute inset-0 bg-black bg-opacity-50"></div>
-        <div className="absolute inset-0 flex flex-col justify-center items-center text-white">
-          <h1 className="text-4xl md:text-5xl font-bold mb-4 text-center px-4">Welcome to Aegon Car Rentals</h1>
-          <p className="text-xl md:text-2xl mb-8 text-center px-4">Experience luxury and comfort on your next journey</p>
-          <div className="w-full max-w-4xl px-4">
-            <SearchForm isSticky={isSticky} />
-          </div>
-        </div>
-      </div>
+      <HeroSection isSticky={isSticky} />
       <main className="container mx-auto px-4 py-12">
         <CarCategoriesGrid />
       </main>
