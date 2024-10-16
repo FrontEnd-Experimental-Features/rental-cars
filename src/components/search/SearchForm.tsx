@@ -1,26 +1,29 @@
 'use client'
 
-import React, { useState } from 'react';
+import React from 'react';
 import { FaSearch, FaMapMarkerAlt, FaCalendarAlt, FaClock } from 'react-icons/fa';
-
-const locations = ['LAX', 'SFO', 'NVD', 'PHX', 'NYC', 'MIA', 'CHI', 'HOU', 'ATL', 'BOS'];
+import { useSearchForm } from '../../lib/search/useSearchForm';
+import { locations } from '../../lib/search/constants';
 
 interface SearchFormProps {
   isSticky?: boolean;
 }
 
 const SearchForm: React.FC<SearchFormProps> = ({ isSticky = false }) => {
-  const [location, setLocation] = useState('');
-  const [fromDate, setFromDate] = useState('');
-  const [fromTime, setFromTime] = useState('');
-  const [untilDate, setUntilDate] = useState('');
-  const [untilTime, setUntilTime] = useState('');
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    // Handle search logic here
-    console.log({ location, fromDate, fromTime, untilDate, untilTime });
-  };
+  const {
+    location,
+    setLocation,
+    fromDate,
+    fromTime,
+    setFromTime,
+    untilDate,
+    untilTime,
+    setUntilTime,
+    minDate,
+    handleFromDateChange,
+    handleUntilDateChange,
+    handleSubmit
+  } = useSearchForm();
 
   return (
     <form onSubmit={handleSubmit} className={`bg-white rounded-lg shadow-md p-4 flex flex-wrap items-center justify-between ${isSticky ? 'sticky top-14 z-40' : ''}`}>
@@ -43,7 +46,8 @@ const SearchForm: React.FC<SearchFormProps> = ({ isSticky = false }) => {
         <input
           type="date"
           value={fromDate}
-          onChange={(e) => setFromDate(e.target.value)}
+          onChange={handleFromDateChange}
+          min={minDate}
           className="bg-transparent border-b border-gray-300 focus:border-teal-500 text-gray-700 py-2 px-3 leading-tight focus:outline-none"
           required
         />
@@ -63,7 +67,8 @@ const SearchForm: React.FC<SearchFormProps> = ({ isSticky = false }) => {
         <input
           type="date"
           value={untilDate}
-          onChange={(e) => setUntilDate(e.target.value)}
+          onChange={handleUntilDateChange}
+          min={fromDate || minDate}
           className="bg-transparent border-b border-gray-300 focus:border-teal-500 text-gray-700 py-2 px-3 leading-tight focus:outline-none"
           required
         />
