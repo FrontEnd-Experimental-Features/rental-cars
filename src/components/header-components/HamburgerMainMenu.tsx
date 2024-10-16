@@ -1,9 +1,8 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import MenuCategory from './MenuCategory';
 import MenuItem from './MenuItem';
 import { menuItems } from '../../types/hamburger-menu-items';
 import { MenuCategory as MenuCategoryType } from './navigation-types';
-import useClickOutside from '../../lib/useClickOutside';
 
 const HeaderMenu: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -14,7 +13,23 @@ const HeaderMenu: React.FC = () => {
     setIsMenuOpen(!isMenuOpen);
   };
 
-  useClickOutside(menuRef, () => setIsMenuOpen(false), buttonRef);
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (
+        menuRef.current &&
+        !menuRef.current.contains(event.target as Node) &&
+        buttonRef.current &&
+        !buttonRef.current.contains(event.target as Node)
+      ) {
+        setIsMenuOpen(false);
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, []);
 
   return (
     <div className="relative">
@@ -29,7 +44,10 @@ const HeaderMenu: React.FC = () => {
         </div>
       </button>
       {isMenuOpen && (
-        <div ref={menuRef} className="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1 z-10">
+        <div 
+          ref={menuRef} 
+          className="absolute right-0 mt-2 w-64 bg-white rounded-md shadow-lg py-1 z-50 max-h-[80vh] overflow-y-auto"
+        >
           {menuItems.map((category: MenuCategoryType, index: number) => (
             <MenuCategory key={index} title={category.title}>
               {category.items.map((item, itemIndex) => (
