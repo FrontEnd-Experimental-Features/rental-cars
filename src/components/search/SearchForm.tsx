@@ -78,10 +78,10 @@ const SearchForm: React.FC<SearchFormProps> = ({ isSticky = false }) => {
   };
 
   return (
-    <div className="w-full max-w-[1600px] mx-auto px-4">
-      <form id="search-form" onSubmit={handleSubmit} className={`bg-white rounded-lg shadow-md p-4 ${isSticky ? 'sticky top-14 z-40' : ''}`}>
-        <div className="flex items-center space-x-3">
-          <div className="flex-shrink-0 w-46">
+    <div className="w-full max-w-[1600px] mx-auto px-4 relative">
+      <form id="search-form" onSubmit={handleSubmit} className={`bg-white rounded-lg shadow-md p-4 pr-20 ${isSticky ? 'sticky top-14 z-40' : ''}`}>
+        <div className="flex items-center space-x-4">
+          <div className="flex-shrink-0 w-45">
             <div className="flex items-center relative">
               <FaMapMarkerAlt className="text-gray-400 mr-2 flex-shrink-0" />
               <input
@@ -92,7 +92,7 @@ const SearchForm: React.FC<SearchFormProps> = ({ isSticky = false }) => {
                 onFocus={() => setShowSuggestions(true)}
                 onBlur={handleInputBlur}
                 placeholder="Where"
-                className="w-full bg-transparent border-b border-gray-300 focus:border-teal-500 text-gray-700 py-2 pr-3 leading-tight focus:outline-none truncate"
+                className="w-full bg-transparent border-b border-gray-300 focus:border-teal-500 text-gray-700 py-2 pr-3 leading-tight focus:outline-none"
                 required
               />
               {showSuggestions && suggestions.length > 0 && (
@@ -113,8 +113,8 @@ const SearchForm: React.FC<SearchFormProps> = ({ isSticky = false }) => {
               )}
             </div>
           </div>
-          <div className="flex-shrink-0 w-34">
-            <div className="flex items-center relative">
+          <div className="flex-shrink-0 w-35">
+            <div className="flex items-center">
               <FaCalendarAlt className="text-gray-400 mr-2 flex-shrink-0" />
               <input
                 type="date"
@@ -126,8 +126,8 @@ const SearchForm: React.FC<SearchFormProps> = ({ isSticky = false }) => {
               />
             </div>
           </div>
-          <div className="flex-shrink-0 w-33">
-            <div className="flex items-center relative">
+          <div className="flex-shrink-0 w-24">
+            <div className="flex items-center">
               <FaClock className="text-gray-400 mr-2 flex-shrink-0" />
               <input
                 type="time"
@@ -138,8 +138,8 @@ const SearchForm: React.FC<SearchFormProps> = ({ isSticky = false }) => {
               />
             </div>
           </div>
-          <div className="flex-shrink-0 w-39">
-            <div className="flex items-center relative">
+          <div className="flex-shrink-0 w-35">
+            <div className="flex items-center">
               <FaCalendarAlt className="text-gray-400 mr-2 flex-shrink-0" />
               <input
                 type="date"
@@ -151,8 +151,8 @@ const SearchForm: React.FC<SearchFormProps> = ({ isSticky = false }) => {
               />
             </div>
           </div>
-          <div className="flex-shrink-0 w-32">
-            <div className="flex items-center relative">
+          <div className="flex-shrink-0 w-24">
+            <div className="flex items-center">
               <FaClock className="text-gray-400 mr-2 flex-shrink-0" />
               <input
                 type="time"
@@ -163,16 +163,15 @@ const SearchForm: React.FC<SearchFormProps> = ({ isSticky = false }) => {
               />
             </div>
           </div>
-          <div className="flex-shrink-0 w-32">
-            <button 
-              type="submit" 
-              className="w-14 h-14 bg-teal-500 hover:bg-teal-600 text-white rounded-full transition-colors duration-300 flex items-center justify-center"
-            >
-              <FaSearch className="text-xl" />
-            </button>
-          </div>
         </div>
       </form>
+      <button 
+        type="submit"
+        form="search-form"
+        className="absolute right-0 top-1/2 transform -translate-y-1/2 w-16 h-16 bg-teal-500 hover:bg-teal-600 text-white rounded-full transition-colors duration-300 flex items-center justify-center shadow-lg"
+      >
+        <FaSearch className="text-2xl" />
+      </button>
     </div>
   );
 };
