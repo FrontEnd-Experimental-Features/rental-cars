@@ -1,27 +1,40 @@
 'use client'
 
-import { FC } from 'react';
-import dynamic from 'next/dynamic';
+import React, { useState, useEffect } from 'react';
+import Link from 'next/link';
+import HamburgerMainMenu from './header-components/HamburgerMainMenu';
 
-const DarkModeToggle = dynamic(() => import('./dark-mode-toggle'), {
-  ssr: false,
-});
+const Header: React.FC = () => {
+  const [isScrolled, setIsScrolled] = useState(false);
 
-const Header: FC = () => {
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 10);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
   return (
-    <header className="bg-gradient-to-r from-blue-500 to-purple-500 dark:from-blue-800 dark:to-purple-800 text-white py-6 shadow-lg transition-all duration-300">
-      <div className="container mx-auto px-4 flex justify-between items-center">
-        <h1 className="text-4xl font-bold tracking-tight">
-          <span className="text-yellow-300">Aegon</span> Car Rentals
-        </h1>
-        <nav className="space-x-4">
-          <a href="#" className="hover:text-yellow-300 transition-colors duration-200">Home</a>
-          <a href="#" className="hover:text-yellow-300 transition-colors duration-200">Cars</a>
-          <a href="#" className="hover:text-yellow-300 transition-colors duration-200">About</a>
-          <a href="#" className="hover:text-yellow-300 transition-colors duration-200">Contact</a>
-          <DarkModeToggle />
-        </nav>
+    <header className={`fixed w-full z-50 transition-all duration-300 ${isScrolled ? 'bg-white shadow-md' : 'bg-transparent'}`}>
+      <div className="container mx-auto px-4">
+        <div className="flex items-center justify-between h-12 sm:h-14">
+          <div className="flex items-center">
+            <Link href="/" className="flex items-center">
+              <span className="text-lg font-bold text-teal-500">Aegon</span>
+              <span className="ml-2 text-base font-semibold text-gray-900">Car Rentals</span>
+            </Link>
+          </div>
+          <div className="flex items-center space-x-4">
+            <button className="bg-teal-500 hover:bg-teal-600 text-white px-2 py-1 rounded-md text-xs transition-colors duration-300">
+              Book Now
+            </button>
+            <HamburgerMainMenu />
+          </div>
+        </div>
       </div>
+      <div className="h-1 bg-gradient-to-r from-teal-400 via-teal-500 to-teal-600"></div>
     </header>
   );
 };
