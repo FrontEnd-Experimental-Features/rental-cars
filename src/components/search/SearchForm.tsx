@@ -3,7 +3,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { FaSearch, FaMapMarkerAlt, FaCalendarAlt, FaClock } from 'react-icons/fa';
 import { useSearchForm } from '../../lib/search/useSearchForm';
-import { locations, LocationData } from '../../lib/search/constants';
 
 interface SearchFormProps {
   isSticky?: boolean;
@@ -43,19 +42,21 @@ const SearchForm: React.FC<SearchFormProps> = ({ isSticky = false }) => {
     };
   }, []);
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleInputChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
     setInputValue(value);
 
     if (value.length > 1) {
-      const newSuggestions = Object.entries(locations as LocationData)
-        .flatMap(([state, cities]) => 
-          cities.map(city => `${city}, ${state}`)
-        )
-        .filter(loc => loc.toLowerCase().includes(value.toLowerCase()))
-        .slice(0, 5);
-      setSuggestions(newSuggestions);
-      setShowSuggestions(true);
+      try {
+        const response = await fetch(`/api/locations/suggestions?query=${encodeURIComponent(value)}`);
+        const data = await response.json();
+        setSuggestions(data.suggestions);
+        setShowSuggestions(true);
+      } catch (error) {
+        console.error('Error fetching suggestions:', error);
+        setSuggestions([]);
+        setShowSuggestions(false);
+      }
     } else {
       setSuggestions([]);
       setShowSuggestions(false);
