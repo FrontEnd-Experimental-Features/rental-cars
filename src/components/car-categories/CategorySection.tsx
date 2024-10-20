@@ -12,8 +12,6 @@ interface CategorySectionProps {
 }
 
 const CategorySection: React.FC<CategorySectionProps> = ({ title, categories }) => {
-  console.log(`Rendering ${title} section with ${categories.length} categories`);
-
   const settings = {
     dots: false,
     infinite: true,
@@ -42,19 +40,20 @@ const CategorySection: React.FC<CategorySectionProps> = ({ title, categories }) 
         }
       }
     ],
-    // Add these properties for smoother infinite scrolling
     centerMode: false,
     variableWidth: false,
     adaptiveHeight: false
   };
 
   return (
-    <div className="mb-16 relative">
-      <h2 className="text-3xl font-bold mb-8 text-teal-700 border-b-2 border-teal-500 pb-2 inline-block">{title}</h2>
+    <div className="mb-24 relative">
+      <h2 className="text-4xl font-bold mb-10 text-teal-800 border-b-2 border-teal-500 pb-3 inline-block">
+        {title}
+      </h2>
       <div className="slider-container">
         <Slider {...settings}>
           {categories.map((category) => (
-            <div key={category.id} className="px-3">
+            <div key={category.id} className="px-4">
               <CarCategoryCard category={category} />
             </div>
           ))}
