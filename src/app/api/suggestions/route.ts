@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server';
-import { db } from '../../../../lib/db';
-import { createLocationData } from '../../../../lib/search/locationData';
+import { db } from '../../../lib/db';
+import { createLocationData } from '../../../lib/search/locationData';
 
 const locationData = createLocationData(db);
 

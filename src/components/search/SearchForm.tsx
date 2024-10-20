@@ -48,7 +48,7 @@ const SearchForm: React.FC<SearchFormProps> = ({ isSticky = false }) => {
 
     if (value.length > 1) {
       try {
-        const response = await fetch(`/api/locations/suggestions?query=${encodeURIComponent(value)}`);
+        const response = await fetch(`/api/suggestions?query=${encodeURIComponent(value)}`);
         const data = await response.json();
         setSuggestions(data.suggestions);
         setShowSuggestions(true);
