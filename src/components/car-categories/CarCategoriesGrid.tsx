@@ -1,38 +1,43 @@
 'use client'
 
-import React from 'react';
-import { carCategories, CarCategory } from '../../types/car-categories';
+import React, { useState, useEffect } from 'react';
 import CategorySection from './CategorySection';
-
-// Import slick-carousel styles
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
+import { CarCategory } from '../../types/car';
 
 const CarCategoriesGrid: React.FC = () => {
-  // Get unique category types
-  const categoryTypes = Array.from(new Set(carCategories.map(category => category.type)));
+  const [categories, setCategories] = useState<CarCategory[]>([]);
 
-  // Create an object with categories grouped by type
-  const categoriesByType = categoryTypes.reduce((acc, type) => {
-    acc[type] = carCategories.filter(category => category.type === type);
-    return acc;
-  }, {} as Record<string, CarCategory[]>);
+  useEffect(() => {
+    const fetchCategories = async () => {
+      try {
+        console.log('Fetching categories...');
+        const response = await fetch('/api/cars?type=categories');
+        if (!response.ok) {
+          throw new Error('Failed to fetch categories');
+        }
+        const data = await response.json();
+        console.log('Fetched categories:', data);
+        setCategories(data);
+      } catch (error) {
+        console.error('Error fetching categories:', error);
+      }
+    };
+
+    fetchCategories();
+  }, []);
+
+  console.log('Rendering categories:', categories);
+
+  const premiumCategories = categories.filter(category => category.type_id === 1);
+  const budgetCategories = categories.filter(category => category.type_id === 2);
+
+  console.log('Premium categories:', premiumCategories);
+  console.log('Budget categories:', budgetCategories);
 
   return (
-    <div className="py-16 bg-white">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <h2 className="text-4xl font-bold text-center text-gray-900 mb-12">
-          Discover Our <span className="text-teal-500">Car Categories</span>
-        </h2>
-        {categoryTypes.map((type, index) => (
-          <div key={type} className={index > 0 ? "mt-16" : ""}>
-            <CategorySection 
-              title={type.charAt(0).toUpperCase() + type.slice(1)} 
-              categories={categoriesByType[type]} 
-            />
-          </div>
-        ))}
-      </div>
+    <div className="space-y-12">
+      <CategorySection title="Premium Cars" categories={premiumCategories} />
+      <CategorySection title="Budget-Friendly Options" categories={budgetCategories} />
     </div>
   );
 };

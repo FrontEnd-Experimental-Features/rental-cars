@@ -1,25 +1,27 @@
 import React from 'react';
-import { IoChevronBackOutline, IoChevronForwardOutline } from 'react-icons/io5';
+import { FaChevronLeft, FaChevronRight } from 'react-icons/fa';
 
 interface CustomArrowProps {
   className?: string;
   style?: React.CSSProperties;
   onClick?: () => void;
-  direction: 'prev' | 'next';
+  direction: 'next' | 'prev';
 }
 
-const CustomArrow: React.FC<CustomArrowProps> = ({ className, style, onClick, direction }) => (
-  <div
-    className={`${className} z-10 bg-white rounded-full shadow-md hover:bg-gray-100 transition-colors duration-200 ${direction === 'prev' ? 'left-0' : 'right-0'}`}
-    style={{ ...style, display: 'block' }}
-    onClick={onClick}
-  >
-    {direction === 'prev' ? (
-      <IoChevronBackOutline className="w-6 h-6 text-teal-500" />
-    ) : (
-      <IoChevronForwardOutline className="w-6 h-6 text-teal-500" />
-    )}
-  </div>
-);
+const CustomArrow: React.FC<CustomArrowProps> = ({ className, style, onClick, direction }) => {
+  return (
+    <div
+      className={`${className} custom-arrow ${direction} z-10 bg-white rounded-full shadow-lg p-3 hover:bg-teal-50 transition-colors duration-200 border border-teal-200`}
+      style={{ ...style, display: 'block' }}
+      onClick={onClick}
+    >
+      {direction === 'next' ? (
+        <FaChevronRight className="text-teal-600 text-xl" />
+      ) : (
+        <FaChevronLeft className="text-teal-600 text-xl" />
+      )}
+    </div>
+  );
+};
 
 export default CustomArrow;
