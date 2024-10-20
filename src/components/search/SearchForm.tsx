@@ -81,7 +81,7 @@ const SearchForm: React.FC<SearchFormProps> = ({ isSticky = false }) => {
     <div className="w-full max-w-[1600px] mx-auto px-4 relative">
       <form id="search-form" onSubmit={handleSubmit} className={`bg-white rounded-lg shadow-md p-4 pr-20 ${isSticky ? 'sticky top-14 z-40' : ''}`}>
         <div className="flex items-center space-x-4">
-          <div className="flex-shrink-0 w-45">
+          <div className="flex-shrink-0 w-41">
             <div className="flex items-center relative">
               <FaMapMarkerAlt className="text-gray-400 mr-2 flex-shrink-0" />
               <input
@@ -113,7 +113,7 @@ const SearchForm: React.FC<SearchFormProps> = ({ isSticky = false }) => {
               )}
             </div>
           </div>
-          <div className="flex-shrink-0 w-35">
+          <div className="flex-shrink-0 w-32">
             <div className="flex items-center">
               <FaCalendarAlt className="text-gray-400 mr-2 flex-shrink-0" />
               <input
@@ -126,7 +126,7 @@ const SearchForm: React.FC<SearchFormProps> = ({ isSticky = false }) => {
               />
             </div>
           </div>
-          <div className="flex-shrink-0 w-24">
+          <div className="flex-shrink-0 w-29">
             <div className="flex items-center">
               <FaClock className="text-gray-400 mr-2 flex-shrink-0" />
               <input
@@ -151,7 +151,7 @@ const SearchForm: React.FC<SearchFormProps> = ({ isSticky = false }) => {
               />
             </div>
           </div>
-          <div className="flex-shrink-0 w-24">
+          <div className="flex-shrink-0 w-29">
             <div className="flex items-center">
               <FaClock className="text-gray-400 mr-2 flex-shrink-0" />
               <input
@@ -168,7 +168,7 @@ const SearchForm: React.FC<SearchFormProps> = ({ isSticky = false }) => {
       <button 
         type="submit"
         form="search-form"
-        className="absolute right-0 top-1/2 transform -translate-y-1/2 w-16 h-16 bg-teal-500 hover:bg-teal-600 text-white rounded-full transition-colors duration-300 flex items-center justify-center shadow-lg"
+        className="absolute right-0 top-1/2 transform -translate-y-1/2 w-12 h-12 bg-teal-500 hover:bg-teal-600 text-white rounded-full transition-colors duration-300 flex items-center justify-center shadow-lg"
       >
         <FaSearch className="text-2xl" />
       </button>
