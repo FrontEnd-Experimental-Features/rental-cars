@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-export const useError = () => {
+export const useErrorHandler = () => {
   const [error, setError] = useState<string | null>(null);
 
   const showError = (message: string) => {

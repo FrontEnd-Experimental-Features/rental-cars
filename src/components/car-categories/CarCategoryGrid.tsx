@@ -1,7 +1,7 @@
 'use client'
 
 import React from 'react';
-import CategorySection from './CategorySection';
+import CarCategorySlider from './CarCategorySlider';
 import { CarCategory, CarType } from '../../types/car';
 
 interface CarCategoriesGridProps {
@@ -9,7 +9,7 @@ interface CarCategoriesGridProps {
   carTypes: CarType[];
 }
 
-const CarCategoriesGrid: React.FC<CarCategoriesGridProps> = ({ categories, carTypes }) => {
+const CarCategoryGrid: React.FC<CarCategoriesGridProps> = ({ categories, carTypes }) => {
   if (!carTypes || carTypes.length === 0) {
     return <div>No car types available.</div>;
   }
@@ -19,7 +19,7 @@ const CarCategoriesGrid: React.FC<CarCategoriesGridProps> = ({ categories, carTy
       {carTypes.map((carType) => {
         const filteredCategories = categories.filter(category => category.type_id === carType.id);
         return (
-          <CategorySection 
+          <CarCategorySlider 
             key={carType.id} 
             title={carType.title} 
             categories={filteredCategories} 
@@ -31,4 +31,4 @@ const CarCategoriesGrid: React.FC<CarCategoriesGridProps> = ({ categories, carTy
   );
 };
 
-export default CarCategoriesGrid;
+export default CarCategoryGrid;

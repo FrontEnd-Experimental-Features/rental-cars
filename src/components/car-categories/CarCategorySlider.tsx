@@ -12,7 +12,7 @@ interface CategorySectionProps {
   carType: CarType;
 }
 
-const CategorySection: React.FC<CategorySectionProps> = ({ title, categories, carType }) => {
+const CarCategorySlider: React.FC<CategorySectionProps> = ({ title, categories, carType }) => {
   const settings = {
     dots: false,
     infinite: true,
@@ -62,4 +62,4 @@ const CategorySection: React.FC<CategorySectionProps> = ({ title, categories, ca
   );
 };
 
-export default CategorySection;
+export default CarCategorySlider;

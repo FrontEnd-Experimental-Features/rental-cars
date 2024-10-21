@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { CarCategory, CarType } from '../types/car';
 
-export function useCarData() {
+export function useCarCategories() {
   const [categories, setCategories] = useState<CarCategory[]>([]);
   const [carTypes, setCarTypes] = useState<CarType[]>([]);
   const [isLoading, setIsLoading] = useState(true);
