@@ -13,7 +13,7 @@ const CarCategoryList: React.FC = () => {
     if (!categories.length && !carTypes.length && !isLoading) {
       showError('Failed to load car data. Please try again later.');
     }
-  }, [categories, carTypes, isLoading,showError]);
+  }, [categories, carTypes, isLoading, showError]);
 
   if (isLoading) {
     return <Loading />;
