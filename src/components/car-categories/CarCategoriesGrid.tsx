@@ -2,42 +2,50 @@
 
 import React, { useState, useEffect } from 'react';
 import CategorySection from './CategorySection';
-import { CarCategory } from '../../types/car';
+import { CarCategory, CarType } from '../../types/car';
 
 const CarCategoriesGrid: React.FC = () => {
   const [categories, setCategories] = useState<CarCategory[]>([]);
+  const [carTypes, setCarTypes] = useState<CarType[]>([]);
 
   useEffect(() => {
-    const fetchCategories = async () => {
+    const fetchData = async () => {
       try {
-        console.log('Fetching categories...');
-        const response = await fetch('/api/cars?type=categories');
-        if (!response.ok) {
-          throw new Error('Failed to fetch categories');
+        const [categoriesResponse, typesResponse] = await Promise.all([
+          fetch('/api/cars?type=categories'),
+          fetch('/api/cars?type=types')
+        ]);
+        
+        if (!categoriesResponse.ok || !typesResponse.ok) {
+          throw new Error('Failed to fetch data');
         }
-        const data = await response.json();
-        console.log('Fetched categories:', data);
-        setCategories(data);
+        
+        const categoriesData = await categoriesResponse.json();
+        const typesData = await typesResponse.json();
+        
+        setCategories(categoriesData);
+        setCarTypes(typesData);
       } catch (error) {
-        console.error('Error fetching categories:', error);
+        console.error('Error fetching data:', error);
       }
     };
 
-    fetchCategories();
+    fetchData();
   }, []);
-
-  console.log('Rendering categories:', categories);
-
-  const premiumCategories = categories.filter(category => category.type_id === 1);
-  const budgetCategories = categories.filter(category => category.type_id === 2);
-
-  console.log('Premium categories:', premiumCategories);
-  console.log('Budget categories:', budgetCategories);
 
   return (
     <div className="space-y-12">
-      <CategorySection title="Premium Cars" categories={premiumCategories} />
-      <CategorySection title="Budget-Friendly Options" categories={budgetCategories} />
+      {carTypes.map((carType) => {
+        const filteredCategories = categories.filter(category => category.type_id === carType.id);
+        return (
+          <CategorySection 
+            key={carType.id} 
+            title={carType.title} 
+            categories={filteredCategories} 
+            carType={carType}
+          />
+        );
+      })}
     </div>
   );
 };

@@ -1,6 +1,7 @@
 export interface CarType {
   id: number;
   type: string;
+  title: string;
   is_active: boolean;
 }
 

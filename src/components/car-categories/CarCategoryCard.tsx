@@ -1,13 +1,14 @@
 import React from 'react';
 import Image from 'next/image';
-import { CarCategory } from '../../types/car';
 import { FaChevronRight } from 'react-icons/fa';
+import { CarCategory, CarType } from '../../types/car';
 
 interface CarCategoryCardProps {
   category: CarCategory;
+  carType: CarType;
 }
 
-const CarCategoryCard: React.FC<CarCategoryCardProps> = ({ category }) => {
+const CarCategoryCard: React.FC<CarCategoryCardProps> = ({ category, carType }) => {
   return (
     <div className="bg-white rounded-lg shadow-xl overflow-hidden h-[360px] transition-all duration-300 hover:shadow-2xl hover:scale-105 group relative">
       <div className="relative h-56">
@@ -20,7 +21,7 @@ const CarCategoryCard: React.FC<CarCategoryCardProps> = ({ category }) => {
         />
         <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
         <div className="absolute top-4 left-4 bg-white/90 backdrop-blur-sm rounded-full px-3 py-1 shadow-md opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-          <span className="text-teal-800 text-xs font-semibold">{category.type}</span>
+          <span className="text-teal-800 text-xs font-semibold">{carType.title}</span>
         </div>
       </div>
       <div className="p-6 bg-gradient-to-b from-white to-gray-50">
