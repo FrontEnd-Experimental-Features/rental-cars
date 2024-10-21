@@ -1,37 +1,18 @@
 'use client'
 
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import CategorySection from './CategorySection';
 import { CarCategory, CarType } from '../../types/car';
 
-const CarCategoriesGrid: React.FC = () => {
-  const [categories, setCategories] = useState<CarCategory[]>([]);
-  const [carTypes, setCarTypes] = useState<CarType[]>([]);
+interface CarCategoriesGridProps {
+  categories: CarCategory[];
+  carTypes: CarType[];
+}
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const [categoriesResponse, typesResponse] = await Promise.all([
-          fetch('/api/cars?type=categories'),
-          fetch('/api/cars?type=types')
-        ]);
-        
-        if (!categoriesResponse.ok || !typesResponse.ok) {
-          throw new Error('Failed to fetch data');
-        }
-        
-        const categoriesData = await categoriesResponse.json();
-        const typesData = await typesResponse.json();
-        
-        setCategories(categoriesData);
-        setCarTypes(typesData);
-      } catch (error) {
-        console.error('Error fetching data:', error);
-      }
-    };
-
-    fetchData();
-  }, []);
+const CarCategoriesGrid: React.FC<CarCategoriesGridProps> = ({ categories, carTypes }) => {
+  if (!carTypes || carTypes.length === 0) {
+    return <div>No car types available.</div>;
+  }
 
   return (
     <div className="space-y-12">

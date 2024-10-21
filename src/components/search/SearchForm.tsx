@@ -144,9 +144,10 @@ const SearchForm: React.FC<SearchFormProps> = ({ isSticky = false }) => {
       <button 
         type="submit"
         form="search-form"
-        className="absolute right-8 -bottom-6 lg:right-8 lg:top-1/2 lg:-translate-y-1/2 w-14 h-14 bg-teal-500 hover:bg-teal-600 text-white rounded-full transition-all duration-300 flex items-center justify-center shadow-lg hover:shadow-xl transform hover:scale-105"
+        className="absolute right-8 -bottom-6 lg:right-8 lg:top-1/2 lg:-translate-y-1/2 w-14 h-14 bg-teal-500 hover:bg-teal-600 text-white rounded-full transition-all duration-300 flex items-center justify-center shadow-lg hover:shadow-xl transform hover:scale-105 overflow-hidden group"
       >
-        <FaSearch className="text-2xl" />
+        <FaSearch className="text-2xl group-hover:scale-110 transition-transform duration-300" />
+        <span className="absolute w-full h-full bg-white opacity-0 group-hover:opacity-20 transition-opacity duration-300"></span>
       </button>
     </div>
   );

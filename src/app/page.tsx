@@ -1,18 +1,18 @@
 'use client'
 
 import React from 'react';
-import CarCategoriesGrid from '../components/car-categories/CarCategoriesGrid';
 import HeroSection from '../components/HeroSection';
+import CarCategoriesContainer from '../components/car-categories/CarCategoriesContainer';
 
-const Home: React.FC = () => {
+const HomePage: React.FC = () => {  
   return (
     <div className="min-h-screen flex flex-col">
       <HeroSection />
       <main className="container mx-auto px-4 py-12">
-        <CarCategoriesGrid />
+        <CarCategoriesContainer />
       </main>
     </div>
   );
-}
+};
 
-export default Home;
+export default HomePage;
