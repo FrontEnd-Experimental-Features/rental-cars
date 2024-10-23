@@ -1,13 +1,15 @@
 import React, { useState, useRef, useEffect } from 'react';
 import MenuCategory from './MenuCategory';
 import MenuItem from './MenuItem';
-import { menuItems } from '../../types/hamburger-menu-items';
-import { MenuCategory as MenuCategoryType } from './navigation-types';
+import { useMenuData } from '../../hooks/useMenuData';
+import Loading from '../common/Loading';
+import ErrorDisplay from '../common/Error';
 
-const HeaderMenu: React.FC = () => {
+const HamburgerMainMenu: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const menuRef = useRef<HTMLDivElement>(null);
   const buttonRef = useRef<HTMLButtonElement>(null);
+  const { menuItems, isLoading, error } = useMenuData();
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -31,6 +33,9 @@ const HeaderMenu: React.FC = () => {
     };
   }, []);
 
+  if (isLoading) return <Loading />;
+  if (error) return <ErrorDisplay message={error} />;
+
   return (
     <div className="relative">
       <button 
@@ -48,8 +53,8 @@ const HeaderMenu: React.FC = () => {
           ref={menuRef} 
           className="absolute right-0 mt-2 w-64 bg-white rounded-md shadow-lg py-1 z-50 max-h-[80vh] overflow-y-auto"
         >
-          {menuItems.map((category: MenuCategoryType, index: number) => (
-            <MenuCategory key={index} title={category.title}>
+          {menuItems.map((category) => (
+            <MenuCategory key={category.id} title={category.title}>
               {category.items.map((item, itemIndex) => (
                 <MenuItem key={itemIndex} href={item.href}>
                   {item.label}
@@ -63,4 +68,4 @@ const HeaderMenu: React.FC = () => {
   );
 };
 
-export default HeaderMenu;
+export default HamburgerMainMenu;
