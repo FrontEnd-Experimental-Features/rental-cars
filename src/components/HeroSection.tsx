@@ -34,9 +34,7 @@ const HeroSection: React.FC = () => {
       />
       <div className="absolute inset-0 bg-black bg-opacity-50"></div>
       <div className="absolute inset-0 flex flex-col justify-center items-center text-white">
-        <h1 className="text-4xl md:text-5xl font-bold mb-4 text-center px-4">Welcome to Aegon Car Rentals</h1>
-        <p className="text-xl md:text-2xl mb-8 text-center px-4">Experience luxury and comfort on your next journey</p>
-        <div className="w-full max-w-5xl px-5">
+        <div className="w-full max-w-7xl px-5 sm:px-6 lg:px-8">
           <SearchForm />
         </div>
       </div>
